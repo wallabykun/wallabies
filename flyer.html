@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ワラビーズ 紹介チラシ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* ===== リセット & ベース ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #e8e8e8;
+        }
+
+        body {
+            font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic Pro', sans-serif;
+            color: #2C3E50;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 20px;
+        }
+
+        /* ===== A4用紙 ===== */
+        .flyer {
+            width: 210mm;
+            height: 297mm;
+            background: #FFFFFF;
+            border-radius: 4px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media print {
+            html, body { background: white; padding: 0; }
+            .flyer {
+                width: 100%;
+                min-height: auto;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        /* ===== ヘッダー帯 ===== */
+        .header {
+            background: linear-gradient(135deg, #3CB4A0 0%, #5BC8B7 50%, #7DD8CA 100%);
+            color: white;
+            text-align: center;
+            padding: 10px 20px 8px;
+            position: relative;
+        }
+
+        .header-top {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            opacity: 0.9;
+        }
+
+        .header-title {
+            font-size: 32px;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            margin: 2px 0;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+        }
+
+        .header-title .wa {
+            font-size: 46px;
+            display: inline-block;
+            transform: rotate(-3deg);
+            color: #FFF176;
+            text-shadow: 2px 2px 0 rgba(0,0,0,0.15);
+        }
+
+        .header-sub {
+            font-size: 13px;
+            font-weight: 700;
+            opacity: 0.95;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== メインイラスト ===== */
+        .main-visual {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background: #e8f5e9;
+        }
+
+        .main-visual img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 240px;
+        }
+
+        /* ===== キャッチコピー帯 ===== */
+        .catchcopy {
+            background: #FFF8E1;
+            border-top: 3px solid #FFD54F;
+            border-bottom: 3px solid #FFD54F;
+            text-align: center;
+            padding: 6px 20px;
+        }
+
+        .catchcopy p {
+            font-size: 15px;
+            font-weight: 900;
+            color: #5D4037;
+            letter-spacing: 0.05em;
+        }
+
+        .catchcopy .accent {
+            color: #3CB4A0;
+            font-size: 17px;
+        }
+
+        /* ===== コンテンツエリア ===== */
+        .content {
+            padding: 10px 20px 8px;
+            flex: 1;
+        }
+
+        /* --- ワラビーズってなに？ --- */
+        .about {
+            margin-bottom: 8px;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: #3CB4A0;
+            color: white;
+            font-size: 13px;
+            font-weight: 900;
+            padding: 2px 12px;
+            border-radius: 20px;
+            margin-bottom: 4px;
+        }
+
+        .about-text {
+            font-size: 11.5px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .about-text strong {
+            color: #3CB4A0;
+        }
+
+        /* --- 情報グリッド --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .info-box {
+            background: #F5FDFB;
+            border: 2px solid #B2E0D6;
+            border-radius: 12px;
+            padding: 8px 12px;
+        }
+
+        .info-box .icon-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .info-box .icon {
+            font-size: 18px;
+        }
+
+        .info-box .label {
+            font-size: 11px;
+            font-weight: 900;
+            color: #3CB4A0;
+        }
+
+        .info-box .value {
+            font-size: 14px;
+            font-weight: 700;
+            color: #2C3E50;
+            line-height: 1.5;
+        }
+
+        .info-box .note {
+            font-size: 10px;
+            color: #777;
+            margin-top: 2px;
+        }
+
+        /* --- お楽しみポイント --- */
+        .fun-section {
+            background: linear-gradient(135deg, #FFF8E1 0%, #FFF3E0 100%);
+            border: 2px solid #FFD54F;
+            border-radius: 12px;
+            padding: 8px 14px;
+            margin-bottom: 8px;
+        }
+
+        .fun-section .fun-title {
+            font-size: 14px;
+            font-weight: 900;
+            color: #F57F17;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .fun-items {
+            display: flex;
+            gap: 12px;
+        }
+
+        .fun-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .fun-item .fun-icon {
+            font-size: 28px;
+            margin-bottom: 2px;
+        }
+
+        .fun-item .fun-name {
+            font-size: 12px;
+            font-weight: 900;
+            color: #5D4037;
+        }
+
+        .fun-item .fun-desc {
+            font-size: 10.5px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* --- 下部2カラム --- */
+        .bottom-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        /* --- 申し込みエリア（右カラム） --- */
+        .apply-section {
+            background: #F0FAF8;
+            border: 2px solid #3CB4A0;
+            border-radius: 12px;
+            padding: 8px 12px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .apply-title {
+            font-size: 12px;
+            font-weight: 900;
+            color: #3CB4A0;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .apply-body {
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+            flex: 1;
+        }
+
+        .apply-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .apply-info .qr-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .apply-info .qr-img {
+            width: 72px;
+            height: 72px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        .apply-info .qr-text {
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .apply-info .qr-text .qr-label {
+            font-weight: 900;
+            color: #3CB4A0;
+            font-size: 10px;
+        }
+
+        .apply-info .qr-text .qr-value {
+            font-weight: 700;
+            color: #2C3E50;
+            font-size: 11px;
+        }
+
+        .apply-info .mail-row {
+            font-size: 11px;
+        }
+
+        .apply-info .mail-row .method-label {
+            font-weight: 900;
+            color: #3CB4A0;
+            font-size: 10px;
+        }
+
+        .apply-info .mail-row .method-value {
+            font-weight: 700;
+            color: #2C3E50;
+        }
+
+        .apply-info .apply-note {
+            font-size: 10px;
+            color: #555;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .apply-mascot {
+            flex-shrink: 0;
+            align-self: flex-end;
+        }
+
+        .apply-mascot img {
+            width: 80px;
+            height: auto;
+            image-rendering: pixelated;
+        }
+
+        /* --- 過去のコース例（右カラム） --- */
+        .courses-section {
+            background: #FFF8E1;
+            border: 2px solid #FFD54F;
+            border-radius: 12px;
+            padding: 8px 10px;
+        }
+
+        .courses-title {
+            font-size: 12px;
+            font-weight: 900;
+            color: #F57F17;
+            margin-bottom: 6px;
+            text-align: center;
+        }
+
+        .course-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-list li {
+            font-size: 11px;
+            font-weight: 500;
+            color: #5D4037;
+            padding: 3px 0;
+            border-bottom: 1px dashed #E0C97A;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .course-list li:last-child {
+            border-bottom: none;
+        }
+
+        .course-list .course-icon {
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        .course-list .course-name {
+            font-weight: 700;
+        }
+
+        .courses-note {
+            font-size: 9px;
+            color: #999;
+            margin-top: 4px;
+            text-align: center;
+        }
+
+        /* --- フッター --- */
+        .footer {
+            background: #3CB4A0;
+            color: white;
+            text-align: center;
+            padding: 6px 20px;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== スマホ対応 ===== */
+        @media screen and (max-width: 768px) {
+            html, body {
+                background: white;
+                padding: 0;
+            }
+
+            body {
+                display: block;
+            }
+
+            .flyer {
+                width: 100%;
+                height: auto;
+                min-height: auto;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .header {
+                padding: 16px 16px 12px;
+            }
+
+            .header-title {
+                font-size: 32px;
+            }
+
+            .header-sub {
+                font-size: 14px;
+            }
+
+            .main-visual img {
+                max-height: none;
+            }
+
+            .catchcopy {
+                padding: 10px 16px;
+            }
+
+            .catchcopy p {
+                font-size: 16px;
+            }
+
+            .catchcopy .accent {
+                font-size: 18px;
+            }
+
+            .content {
+                padding: 14px 16px 10px;
+            }
+
+            .section-label {
+                font-size: 14px;
+                padding: 4px 16px;
+            }
+
+            .about-text {
+                font-size: 13px;
+                line-height: 1.7;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .info-box {
+                padding: 12px 16px;
+            }
+
+            .info-box .value {
+                font-size: 16px;
+            }
+
+            .info-box .note {
+                font-size: 12px;
+            }
+
+            .fun-section {
+                padding: 12px 16px;
+            }
+
+            .fun-section .fun-title {
+                font-size: 16px;
+            }
+
+            .fun-items {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .fun-item .fun-icon {
+                font-size: 32px;
+            }
+
+            .fun-item .fun-name {
+                font-size: 14px;
+            }
+
+            .fun-item .fun-desc {
+                font-size: 12px;
+            }
+
+            .bottom-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .courses-section {
+                padding: 12px 16px;
+            }
+
+            .courses-title {
+                font-size: 15px;
+            }
+
+            .course-list li {
+                font-size: 13px;
+                padding: 6px 0;
+            }
+
+            .courses-note {
+                font-size: 11px;
+            }
+
+            .apply-section {
+                padding: 14px 16px;
+            }
+
+            .apply-title {
+                font-size: 15px;
+                margin-bottom: 10px;
+            }
+
+            .apply-info .qr-row {
+                gap: 12px;
+            }
+
+            .apply-info .qr-img {
+                width: 90px;
+                height: 90px;
+            }
+
+            .apply-info .qr-text {
+                font-size: 13px;
+            }
+
+            .apply-info .qr-text .qr-label {
+                font-size: 12px;
+            }
+
+            .apply-info .qr-text .qr-value {
+                font-size: 14px;
+            }
+
+            .apply-info .mail-row {
+                font-size: 13px;
+            }
+
+            .apply-info .apply-note {
+                font-size: 13px;
+            }
+
+            .apply-mascot img {
+                width: 90px;
+            }
+
+            .footer {
+                font-size: 12px;
+                padding: 10px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="flyer">
+
+        <!-- ヘッダー -->
+        <div class="header">
+            <div class="header-top">スタンプウォーキング</div>
+            <h1 class="header-title">ワラビーズ</h1>
+            <div class="header-sub">まちにでよう！ いっしょに あるこう！</div>
+        </div>
+
+        <!-- メインイラスト -->
+        <div class="main-visual">
+            <img src="images/chira00.png" alt="ワラビーくん・コアラさん・カエルくんが川沿いを楽しく歩いているイラスト">
+        </div>
+
+        <!-- キャッチコピー -->
+        <div class="catchcopy">
+            <p>障害のある方が、<span class="accent">仲間とゆっくり街を歩く</span>ウォーキングイベントです</p>
+        </div>
+
+        <!-- コンテンツ -->
+        <div class="content">
+
+            <!-- ワラビーズってなに？ -->
+            <div class="about">
+                <div class="section-label">ワラビーズってなに？</div>
+                <p class="about-text">
+                    神戸・阪神間を中心に、<strong>月1回</strong>のウォーキングイベントを開催しています。
+                    公園、海沿い、商店街など歩きやすいコースを<strong>スローペース</strong>でゆったり散歩。
+                    オリエンテーリング式の<strong>スタンプカード</strong>で目的地を巡る楽しさもあります。
+                </p>
+            </div>
+
+            <!-- 情報グリッド -->
+            <div class="info-grid">
+                <div class="info-box">
+                    <div class="icon-label">
+                        <span class="icon">📅</span>
+                        <span class="label">日程</span>
+                    </div>
+                    <div class="value">毎月 第4土曜日</div>
+                    <div class="note">9:30〜12:30（約3時間）</div>
+                </div>
+                <div class="info-box">
+                    <div class="icon-label">
+                        <span class="icon">💰</span>
+                        <span class="label">参加費</span>
+                    </div>
+                    <div class="value">1,500円<span style="font-size:11px; font-weight:400;">（おやつ込み）</span></div>
+                    <div class="note">保護者 500円 ／ 現地で集金</div>
+                </div>
+                <div class="info-box">
+                    <div class="icon-label">
+                        <span class="icon">📍</span>
+                        <span class="label">場所</span>
+                    </div>
+                    <div class="value">神戸〜阪神間</div>
+                    <div class="note">駅から歩ける場所を毎月選定</div>
+                </div>
+                <div class="info-box">
+                    <div class="icon-label">
+                        <span class="icon">👥</span>
+                        <span class="label">対象</span>
+                    </div>
+                    <div class="value">療育手帳をお持ちの成人の方</div>
+                    <div class="note">ご家族・介助者も一緒にどうぞ</div>
+                </div>
+            </div>
+
+            <!-- お楽しみポイント -->
+            <div class="fun-section">
+                <div class="fun-title">⭐ おたのしみポイント ⭐</div>
+                <div class="fun-items">
+                    <div class="fun-item">
+                        <div class="fun-icon">🗺️</div>
+                        <div class="fun-name">スタンプカード</div>
+                        <div class="fun-desc">コースのポイントでスタンプ！<br>10枚たまると嬉しい特典！</div>
+                    </div>
+                    <div class="fun-item">
+                        <div class="fun-icon">🍩</div>
+                        <div class="fun-name">おやつタイム</div>
+                        <div class="fun-desc">休憩でおいしいおやつ！<br>毎回ちがうおやつが楽しみ</div>
+                    </div>
+                    <div class="fun-item">
+                        <div class="fun-icon">🏛️</div>
+                        <div class="fun-name">いろんなスポット</div>
+                        <div class="fun-desc">街に公園に海に<br>博物館や動物園などを見学することも</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 下部2カラム：過去コース＋申し込み -->
+            <div class="bottom-row">
+
+                <!-- 左：過去のコース例 -->
+                <div class="courses-section">
+                    <div class="courses-title">🚶 こんなところを歩きました</div>
+                    <ul class="course-list">
+                        <li><span class="course-icon">⛩️</span><span class="course-name">門戸厄神</span>〜新幹線記念公園〜関学</li>
+                        <li><span class="course-icon">🌊</span><span class="course-name">舞子プロムナード</span>〜垂水シーサイド</li>
+                        <li><span class="course-icon">🍶</span><span class="course-name">白鶴酒造資料館</span>〜石屋川</li>
+                        <li><span class="course-icon">🏢</span><span class="course-name">神戸旧居留地</span>〜メリケンパーク</li>
+                        <li><span class="course-icon">🌿</span><span class="course-name">服部緑地</span>で紅葉狩りウォーク</li>
+                        <li><span class="course-icon">🐻‍❄️</span><span class="course-name">天王寺</span>〜天王寺動物園</li>
+                        <li><span class="course-icon">🏝️</span><span class="course-name">六甲アイランド</span>シティヒル散歩</li>
+                    </ul>
+                    <div class="courses-note">※ コースは毎月変わります</div>
+                </div>
+
+                <!-- 右：申し込み -->
+                <div class="apply-section">
+                    <div class="apply-title">📩 お申し込み・お問い合わせ</div>
+                    <div class="apply-body">
+                        <div class="apply-info">
+                            <div class="qr-row">
+                                <a href="https://line.me/ti/p/9CdFa6eMxw"><img src="images/qr_line.jpg" alt="LINE QRコード" class="qr-img"></a>
+                                <div class="qr-text">
+                                    <div class="qr-label">💬 LINE</div>
+                                    <div class="qr-value"><a href="https://line.me/ti/p/9CdFa6eMxw" style="color:#2C3E50; text-decoration:none;">ニシヨリのLINE</a></div>
+                                    <div style="font-size:9px; color:#777;"><a href="https://line.me/ti/p/9CdFa6eMxw" style="color:#3CB4A0;">タップで友だち追加</a></div>
+                                </div>
+                            </div>
+                            <div class="mail-row">
+                                <span class="method-label">✉️ メール</span>
+                                <span class="method-value">tomonisiyo@gmail.com</span>
+                            </div>
+                            <div class="apply-note">
+                                お気軽にお問い合わせください！<br>
+                                参加申し込みは毎月15日まで
+                            </div>
+                        </div>
+                        <div class="apply-mascot">
+                            <img src="images/waraby.png" alt="ワラビーくん">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- フッター -->
+        <div class="footer">
+            ウォーキングサークル ワラビーズ ｜ 主催：ニシヨリ
+        </div>
+
+    </div>
+</body>
+</html>
