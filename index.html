@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ワラビーズ｜スタンプウォーキング</title>
+    <meta name="description" content="ワラビーズは、障害のある方が仲間とゆっくり街を歩くウォーキングイベントです。神戸・阪神間・大阪で毎月開催。スタンプカードとおやつタイムがお楽しみ！">
+    <meta property="og:title" content="ワラビーズ｜スタンプウォーキング">
+    <meta property="og:description" content="障害のある方が、仲間とゆっくり街を歩くウォーキングイベントです。毎月第4土曜日、神戸・阪神間・大阪で開催！">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://wallabykun.github.io/">
+    <meta property="og:image" content="https://wallabykun.github.io/images/chirashi01.jpg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦘</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Yusei+Magic&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <style>
+        /* ===== ベース ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --teal: #3AB5A0;
+            --teal-dark: #2E9484;
+            --yellow: #FFC93C;
+            --marker: #FFF176;
+            --pink: #F48FB1;
+            --green: #7CB342;
+            --orange: #FF9800;
+            --ink: #4E342E;
+            --cream: #FFFDF3;
+            --paper: #FFFCF7;
+            --line-green: #06C755;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Zen Maru Gothic', 'Hiragino Maru Gothic Pro', 'Segoe UI Emoji', sans-serif;
+            color: var(--ink);
+            line-height: 1.8;
+            background: var(--paper);
+        }
+
+        img { max-width: 100%; display: block; }
+        a { color: inherit; }
+
+        section { scroll-margin-top: 70px; }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== ナビゲーション ===== */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255,255,255,0.94);
+            backdrop-filter: blur(6px);
+            border-bottom: 2px solid var(--teal);
+        }
+
+        .nav-inner {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 8px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .nav-brand {
+            font-family: 'Mochiy Pop One', sans-serif;
+            font-size: 20px;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .nav-brand span:nth-child(1) { color: #26C6DA; }
+        .nav-brand span:nth-child(2) { color: #8BC34A; }
+        .nav-brand span:nth-child(3) { color: #FFCA28; }
+        .nav-brand span:nth-child(4) { color: #FFA726; }
+        .nav-brand span:nth-child(5) { color: #EC407A; }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .nav-links a {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 13px;
+            text-decoration: none;
+            padding: 4px 10px;
+            border-radius: 20px;
+            white-space: nowrap;
+            transition: background 0.2s;
+        }
+
+        .nav-links a:hover { background: var(--marker); }
+
+        /* ===== ヒーロー ===== */
+        .hero {
+            background: #FFFFFF;
+            text-align: center;
+            padding: 34px 16px 0;
+        }
+
+        .hero-top {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: clamp(13px, 2.5vw, 16px);
+            letter-spacing: 0.35em;
+            color: var(--teal-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .hero-top::before, .hero-top::after {
+            content: "";
+            width: clamp(40px, 8vw, 80px);
+            height: 2px;
+            background: var(--teal);
+            border-radius: 2px;
+        }
+
+        .logo {
+            font-family: 'Mochiy Pop One', sans-serif;
+            font-size: clamp(46px, 10vw, 84px);
+            line-height: 1.25;
+            letter-spacing: 0.02em;
+            user-select: none;
+        }
+
+        .logo span {
+            display: inline-block;
+            text-shadow:
+                4px 0 0 var(--ink), 3.7px 1.5px 0 var(--ink), 2.8px 2.8px 0 var(--ink), 1.5px 3.7px 0 var(--ink),
+                0 4px 0 var(--ink), -1.5px 3.7px 0 var(--ink), -2.8px 2.8px 0 var(--ink), -3.7px 1.5px 0 var(--ink),
+                -4px 0 0 var(--ink), -3.7px -1.5px 0 var(--ink), -2.8px -2.8px 0 var(--ink), -1.5px -3.7px 0 var(--ink),
+                0 -4px 0 var(--ink), 1.5px -3.7px 0 var(--ink), 2.8px -2.8px 0 var(--ink), 3.7px -1.5px 0 var(--ink),
+                7px 8px 0 rgba(78,52,46,0.2);
+        }
+
+        .logo span:nth-child(1) { transform: rotate(-5deg) translateY(2px);  color: #26C6DA; }
+        .logo span:nth-child(2) { transform: rotate(3deg)  translateY(-3px); color: #8BC34A; }
+        .logo span:nth-child(3) { transform: rotate(-2deg) translateY(2px);  color: #FFCA28; }
+        .logo span:nth-child(4) { transform: rotate(2deg)  translateY(-2px); color: #FFA726; }
+        .logo span:nth-child(5) { transform: rotate(5deg)  translateY(3px);  color: #EC407A; }
+
+        .hero-sub {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: clamp(15px, 3vw, 20px);
+            margin-top: 6px;
+        }
+
+        .hero-sub .dot-t { color: var(--teal); }
+        .hero-sub .dot-y { color: var(--orange); }
+        .hero-sub .dot-g { color: var(--green); }
+
+        .hero-catch {
+            font-size: clamp(14px, 2.8vw, 18px);
+            font-weight: 900;
+            margin-top: 10px;
+        }
+
+        .hero-catch .accent {
+            color: var(--teal-dark);
+            background: linear-gradient(transparent 64%, var(--marker) 64%, var(--marker) 94%, transparent 94%);
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin: 18px 0 26px;
+        }
+
+        .btn {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 15px;
+            text-decoration: none;
+            padding: 10px 26px;
+            border-radius: 40px;
+            border: 2.5px solid var(--ink);
+            box-shadow: 3px 3px 0 var(--ink);
+            transition: transform 0.15s, box-shadow 0.15s;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 var(--ink);
+        }
+
+        .btn-line { background: var(--line-green); color: #fff; }
+        .btn-about { background: var(--yellow); color: var(--ink); }
+
+        .hero-visual {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            border-radius: 18px 18px 0 0;
+        }
+
+        /* ===== お知らせリボン ===== */
+        .news {
+            background: var(--yellow);
+            border-top: 2.5px solid var(--ink);
+            border-bottom: 2.5px solid var(--ink);
+            text-align: center;
+            padding: 10px 16px;
+        }
+
+        .news p {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: clamp(13px, 2.6vw, 16px);
+        }
+
+        /* ===== セクション共通 ===== */
+        .section { padding: 56px 0 30px; }
+
+        .section-title {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: clamp(21px, 4vw, 27px);
+            text-align: center;
+            margin-bottom: 26px;
+        }
+
+        .section-title span {
+            display: inline-block;
+            background: linear-gradient(transparent 60%, var(--marker) 60%, var(--marker) 92%, transparent 92%);
+            padding: 0 6px;
+        }
+
+        /* ===== ワラビーズってなに？ ===== */
+        .about-catch {
+            font-size: clamp(15px, 3vw, 19px);
+            font-weight: 900;
+            text-align: center;
+        }
+
+        .about-catch .accent {
+            color: var(--teal-dark);
+            font-size: 1.12em;
+            background: linear-gradient(transparent 64%, var(--marker) 64%, var(--marker) 94%, transparent 94%);
+        }
+
+        .about-text {
+            max-width: 640px;
+            margin: 14px auto 0;
+            font-size: clamp(13.5px, 2.6vw, 15px);
+        }
+
+        .about-text strong { color: var(--teal-dark); }
+
+        /* --- 基本情報リスト --- */
+        .info-list {
+            max-width: 680px;
+            margin: 28px auto 0;
+            border: 3px solid var(--teal);
+            border-radius: 22px 60px 24px 56px / 60px 22px 56px 24px;
+            padding: 14px 26px;
+            background: #FFFFFF;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 10px 0;
+            border-bottom: 2px dashed #C9E8E0;
+        }
+
+        .info-row:last-child { border-bottom: none; }
+
+        .info-chip {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 13px;
+            color: #fff;
+            min-width: 92px;
+            text-align: center;
+            border-radius: 20px;
+            padding: 3px 0;
+            flex-shrink: 0;
+        }
+
+        .chip-teal   { background: var(--teal); }
+        .chip-pink   { background: var(--pink); }
+        .chip-orange { background: var(--orange); }
+        .chip-green  { background: var(--green); }
+
+        .info-row .value {
+            font-size: 15.5px;
+            font-weight: 900;
+        }
+
+        .info-row .note {
+            font-size: 12.5px;
+            color: #7a6a5f;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 560px) {
+            .info-row { flex-wrap: wrap; gap: 6px 10px; padding: 12px 0; }
+            .info-row .note { width: 100%; }
+        }
+
+        /* ===== おたのしみポイント ===== */
+        .section-fun { background: var(--cream); }
+
+        .fun-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        @media (max-width: 680px) { .fun-items { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+
+        .fun-item {
+            text-align: center;
+            background: #FFFFFF;
+            border: 2.5px dashed var(--ink);
+            padding: 20px 14px 16px;
+            transition: transform 0.2s;
+        }
+
+        .fun-item:hover { transform: translateY(-4px) rotate(0deg) !important; }
+
+        .fun-item:nth-child(1) { border-radius: 22px 54px 26px 58px / 54px 22px 58px 26px; transform: rotate(-0.8deg); }
+        .fun-item:nth-child(2) { border-radius: 58px 26px 54px 22px / 22px 58px 26px 54px; transform: rotate(0.6deg); }
+        .fun-item:nth-child(3) { border-radius: 26px 58px 22px 54px / 58px 26px 54px 22px; transform: rotate(-0.5deg); }
+
+        .fun-item .fun-icon { font-size: 40px; line-height: 1.4; }
+
+        .fun-item .fun-name {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 17px;
+            margin: 4px 0;
+        }
+
+        .fun-item .fun-desc {
+            font-size: 13px;
+            color: #6d5d52;
+        }
+
+        .fun-item .fun-desc strong { color: #E67E00; }
+
+        /* ===== スタンプカード ===== */
+        .stamp-lead {
+            text-align: center;
+            font-size: clamp(13.5px, 2.6vw, 15px);
+            max-width: 620px;
+            margin: -8px auto 26px;
+        }
+
+        .stamp-lead strong { color: #E67E00; }
+
+        .card-fan {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0 16px;
+        }
+
+        .card-fan img {
+            width: clamp(150px, 22vw, 230px);
+            border: 2.5px solid var(--ink);
+            border-radius: 10px;
+            box-shadow: 5px 6px 0 rgba(78,52,46,0.18);
+            margin: 0 -26px;
+            transition: transform 0.25s;
+            cursor: pointer;
+        }
+
+        .card-fan img:nth-child(1) { transform: rotate(-7deg) translateY(8px); }
+        .card-fan img:nth-child(2) { transform: rotate(-2deg) translateY(-4px); z-index: 2; position: relative; }
+        .card-fan img:nth-child(3) { transform: rotate(3deg) translateY(2px); z-index: 3; position: relative; }
+        .card-fan img:nth-child(4) { transform: rotate(8deg) translateY(10px); }
+
+        .card-fan img:hover {
+            transform: rotate(0deg) translateY(-10px) scale(1.06);
+            z-index: 10;
+            position: relative;
+        }
+
+        @media (max-width: 680px) {
+            .card-fan { flex-wrap: wrap; gap: 14px; }
+            .card-fan img { width: 40%; margin: 0; }
+            .card-fan img:nth-child(n) { transform: rotate(-2deg); }
+            .card-fan img:nth-child(even) { transform: rotate(2deg); }
+        }
+
+        .stamp-note {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 12px;
+            color: #8a7a6a;
+            text-align: center;
+        }
+
+        /* ===== ライトボックス ===== */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(45,30,25,0.82);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 24px;
+            cursor: zoom-out;
+        }
+
+        .lightbox.open { display: flex; }
+
+        .lightbox img {
+            max-width: 94vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 14px;
+            right: 20px;
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 15px;
+            color: #fff;
+            background: none;
+            border: 2px solid #fff;
+            border-radius: 30px;
+            padding: 4px 16px;
+            cursor: pointer;
+        }
+
+        .zoomable { cursor: zoom-in; }
+
+        /* ===== あるいたところ ===== */
+        .course-card {
+            max-width: 620px;
+            margin: 0 auto;
+            background: #F2FBF8;
+            border: 3px solid var(--teal);
+            border-radius: 20px 56px 22px 52px / 56px 20px 52px 22px;
+            padding: 18px 28px 20px;
+        }
+
+        .course-list { list-style: none; }
+
+        .course-list li {
+            font-size: clamp(13.5px, 2.6vw, 15px);
+            padding: 8px 0;
+            border-bottom: 2px dashed #A8D8CC;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .course-list li:last-child { border-bottom: none; }
+
+        .course-list .course-name { font-weight: 900; }
+
+        .courses-note {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 13px;
+            color: var(--teal-dark);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* ===== 会報 ===== */
+        .section-newsletter { background: var(--cream); }
+
+        .newsletter-lead {
+            text-align: center;
+            font-size: clamp(13.5px, 2.6vw, 15px);
+            max-width: 620px;
+            margin: -8px auto 24px;
+        }
+
+        .newsletter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 680px) { .newsletter-grid { grid-template-columns: 1fr; max-width: 340px; } }
+
+        .newsletter-item {
+            background: #fff;
+            border: 2.5px solid var(--ink);
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: 4px 4px 0 rgba(78,52,46,0.15);
+            transition: transform 0.2s;
+        }
+
+        .newsletter-item:hover { transform: translateY(-4px); }
+
+        .newsletter-item img { border-radius: 4px; }
+
+        .newsletter-item figcaption {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 13px;
+            text-align: center;
+            padding-top: 6px;
+        }
+
+        /* ===== じゅんびちゅう ===== */
+        .soon-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 680px) { .soon-items { grid-template-columns: 1fr; max-width: 380px; } }
+
+        .soon-item {
+            text-align: center;
+            border: 2.5px dashed #C4B49A;
+            border-radius: 16px;
+            padding: 18px 12px;
+            color: #8a7a6a;
+            background: repeating-linear-gradient(-45deg, #FFFDF3, #FFFDF3 8px, #FDF8E8 8px, #FDF8E8 16px);
+        }
+
+        .soon-item .soon-icon { font-size: 30px; }
+
+        .soon-item .soon-name {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 15px;
+            color: var(--ink);
+        }
+
+        .soon-item .soon-badge {
+            display: inline-block;
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 11px;
+            background: var(--orange);
+            color: #fff;
+            border-radius: 14px;
+            padding: 1px 10px;
+            margin-top: 6px;
+        }
+
+        /* ===== さんかほうほう ===== */
+        .apply-card {
+            max-width: 640px;
+            margin: 0 auto;
+            background: var(--cream);
+            border: 2.5px solid #DFD3AE;
+            border-radius: 6px 6px 6px 20px;
+            padding: 26px 30px 22px;
+            position: relative;
+            box-shadow: 4px 5px 0 rgba(78,52,46,0.12);
+        }
+
+        .apply-card::before {
+            content: "";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 110px;
+            height: 22px;
+            background: rgba(255,201,60,0.65);
+            border-left: 2px dashed rgba(255,255,255,0.8);
+            border-right: 2px dashed rgba(255,255,255,0.8);
+        }
+
+        .apply-flex {
+            display: flex;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        .apply-info { flex: 1; }
+
+        .qr-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .qr-img {
+            width: 96px;
+            height: 96px;
+            border: 2px solid #DFD3AE;
+            border-radius: 6px;
+            flex-shrink: 0;
+        }
+
+        .method-label {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 13px;
+            color: var(--teal-dark);
+        }
+
+        .method-value { font-weight: 900; font-size: 15px; }
+
+        .qr-hint { font-size: 12px; color: #8a7a6a; }
+
+        .mail-row { font-size: 14px; margin-bottom: 12px; }
+
+        .apply-note {
+            font-size: 13px;
+            color: #6d5d52;
+            border-top: 2px dashed #DFD3AE;
+            padding-top: 10px;
+        }
+
+        .apply-mascot {
+            width: 110px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .speech-bubble {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 12px;
+            line-height: 1.4;
+            text-align: center;
+            background: #FFFFFF;
+            border: 2px solid var(--ink);
+            border-radius: 12px;
+            padding: 5px 8px;
+            position: relative;
+        }
+
+        .speech-bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -9px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: var(--ink);
+            border-bottom: none;
+        }
+
+        .speech-bubble .em { color: #D26695; }
+
+        .apply-mascot img { width: 84px; }
+
+        @media (max-width: 560px) {
+            .apply-flex { flex-direction: column; align-items: center; }
+            .apply-info { width: 100%; }
+        }
+
+        .apply-line-btn {
+            text-align: center;
+            margin-top: 22px;
+        }
+
+        /* ===== フッター ===== */
+        .footer {
+            background: var(--teal);
+            color: #fff;
+            text-align: center;
+            padding: 22px 16px 26px;
+            margin-top: 40px;
+        }
+
+        .footer .footer-logo {
+            font-family: 'Yusei Magic', sans-serif;
+            font-size: 16px;
+        }
+
+        .footer .footer-copy {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ナビ -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a class="nav-brand" href="#top"><span>ワ</span><span>ラ</span><span>ビ</span><span>ー</span><span>ズ</span></a>
+            <div class="nav-links">
+                <a href="#about">ワラビーズって？</a>
+                <a href="#fun">おたのしみ</a>
+                <a href="#stampcard">スタンプカード</a>
+                <a href="#courses">あるいたところ</a>
+                <a href="#newsletter">かいほう</a>
+                <a href="#apply">さんかほうほう</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ヒーロー -->
+    <header class="hero" id="top">
+        <div class="hero-top">スタンプウォーキング</div>
+        <h1 class="logo"><span>ワ</span><span>ラ</span><span>ビ</span><span>ー</span><span>ズ</span></h1>
+        <div class="hero-sub"><span class="dot-t">●</span> まちに でよう！ <span class="dot-y">●</span> いっしょに あるこう！ <span class="dot-g">●</span></div>
+        <p class="hero-catch">障害のある方が、<span class="accent">仲間とゆっくり街を歩く</span>ウォーキングイベントです</p>
+        <div class="hero-buttons">
+            <a class="btn btn-about" href="#about">🚶 ワラビーズって なに？</a>
+            <a class="btn btn-line" href="#apply">💬 さんか・お問い合わせ</a>
+        </div>
+        <div class="hero-visual">
+            <img src="images/chirashi01.jpg" alt="カエルくん・コアラさん・ワラビーくんが神戸の街の横断歩道を楽しく歩いているイラスト">
+        </div>
+    </header>
+
+    <!-- お知らせ -->
+    <div class="news">
+        <p>🎉 2026年9月から、ワラビーズはあたらしいかたちで再スタートします！くわしくは順次お知らせします 🎉</p>
+    </div>
+
+    <!-- ワラビーズってなに？ -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title"><span>🚶 ワラビーズって なに？</span></h2>
+            <p class="about-catch">障害のある方が、<span class="accent">仲間とゆっくり街を歩く</span><br>ウォーキングイベントです。</p>
+            <p class="about-text">
+                神戸・阪神間を中心に、<strong>月1回</strong>のウォーキングイベントを開催しています。
+                公園や海沿い、商店街など歩きやすいコースを、毎回<strong>約1万歩</strong>を目標に<strong>スローペース</strong>で歩きます。
+                仲間とおしゃべりしながら<strong>体力づくりや健康維持</strong>、新しい友だちとの交流も楽しめます。
+                スタンプカードを集めながら目的地をめざす、オリエンテーリングのような楽しさもあります。
+            </p>
+
+            <div class="info-list">
+                <div class="info-row">
+                    <span class="info-chip chip-teal">にってい</span>
+                    <span class="value">毎月 第4土曜日</span>
+                    <span class="note">9:30〜12:30（約3時間）※コースによって変わることもあります</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-chip chip-pink">さんかひ</span>
+                    <span class="value">1,500円（おやつ込み）</span>
+                    <span class="note">保護者 500円 ／ 当日現地で集金します</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-chip chip-orange">ばしょ</span>
+                    <span class="value">神戸・阪神間・大阪</span>
+                    <span class="note">毎月ちがう駅に集合して、いろいろなコースを歩きます</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-chip chip-green">たいしょう</span>
+                    <span class="value">療育手帳をお持ちの成人の方</span>
+                    <span class="note">ご家族またはヘルパーさんと一緒にご参加ください</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- おたのしみポイント -->
+    <section class="section section-fun" id="fun">
+        <div class="container">
+            <h2 class="section-title"><span>⭐ おたのしみポイント</span></h2>
+            <div class="fun-items">
+                <div class="fun-item">
+                    <div class="fun-icon">🗺️</div>
+                    <div class="fun-name">スタンプカード</div>
+                    <div class="fun-desc">コースのポイントでスタンプ！<br><strong>10枚たまると嬉しい特典！</strong></div>
+                </div>
+                <div class="fun-item">
+                    <div class="fun-icon">🍩</div>
+                    <div class="fun-name">おやつタイム</div>
+                    <div class="fun-desc">休憩のおいしいおやつ！<br>毎回ちがうおやつにワクワク</div>
+                </div>
+                <div class="fun-item">
+                    <div class="fun-icon">🏛️</div>
+                    <div class="fun-name">いろんなスポット</div>
+                    <div class="fun-desc">街に公園に海に<br>博物館や動物園を見学することも</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- スタンプカード -->
+    <section class="section" id="stampcard">
+        <div class="container">
+            <h2 class="section-title"><span>🎴 スタンプカード</span></h2>
+            <p class="stamp-lead">
+                チェックポイントでスタンプを押しながらゴールをめざす、ワラビーズ名物のカード。
+                <strong>毎回コースにあわせた手描きデザイン</strong>なので、集める楽しみもあります！
+            </p>
+            <div class="card-fan">
+                <img src="images/cards/card24.jpg" alt="スタンプカード（見本）" class="zoomable" loading="lazy">
+                <img src="images/cards/card25.jpg" alt="スタンプカード（見本）" class="zoomable" loading="lazy">
+                <img src="images/cards/card26.jpg" alt="スタンプカード（見本）" class="zoomable" loading="lazy">
+                <img src="images/cards/card27.jpg" alt="スタンプカード（見本）" class="zoomable" loading="lazy">
+            </div>
+            <p class="stamp-note">※ 画像はみほんです。カードは当日参加のみなさんにお渡しします</p>
+        </div>
+    </section>
+
+    <!-- あるいたところ -->
+    <section class="section" id="courses">
+        <div class="container">
+            <h2 class="section-title"><span>👟 こんなところを歩きました</span></h2>
+            <div class="course-card">
+                <ul class="course-list">
+                    <li><span>⚓️</span><span><span class="course-name">神戸旧居留地</span>〜メリケンパーク</span></li>
+                    <li><span>🐻‍❄️</span><span><span class="course-name">あべのハルカス</span>〜天王寺動物園</span></li>
+                    <li><span>🌊</span><span><span class="course-name">舞子プロムナード</span>〜垂水シーサイド</span></li>
+                    <li><span>🌸</span><span><span class="course-name">夙川</span>〜御前浜公園</span></li>
+                    <li><span>🏝️</span><span><span class="course-name">六甲アイランド</span> シティヒル散歩</span></li>
+                    <li><span>⚾️</span><span><span class="course-name">今津</span>〜甲子園浜</span></li>
+                    <li><span>🌿</span><span><span class="course-name">服部緑地</span> 紅葉狩りウォーク</span></li>
+                </ul>
+                <div class="courses-note">※ 1万歩を目標に、コースは毎月変わります</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 会報 -->
+    <section class="section section-newsletter" id="newsletter">
+        <div class="container">
+            <h2 class="section-title"><span>📰 会報『ワラビーズのワ！』</span></h2>
+            <p class="newsletter-lead">
+                毎月発行している会報です。今月のコース案内、コアラさんの「げんばレポート」、
+                4コマ漫画「ワラビーくん」などをお届けしています。
+            </p>
+            <div class="newsletter-grid">
+                <figure class="newsletter-item">
+                    <img src="images/thumbs/2603_thumb.jpg" data-full="images/2603.png" alt="ワラビーズのワ！ 2026年3月号" class="zoomable" loading="lazy">
+                    <figcaption>2026年3月号</figcaption>
+                </figure>
+                <figure class="newsletter-item">
+                    <img src="images/thumbs/2604_thumb.jpg" data-full="images/2604image0.png" alt="ワラビーズのワ！ 2026年4月号" class="zoomable" loading="lazy">
+                    <figcaption>2026年4月号</figcaption>
+                </figure>
+                <figure class="newsletter-item">
+                    <img src="images/thumbs/2605_thumb.jpg" data-full="images/2605image0.png" alt="ワラビーズのワ！ 2026年5月号" class="zoomable" loading="lazy">
+                    <figcaption>2026年5月号</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- じゅんびちゅう -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title"><span>🔧 これからふえるコーナー</span></h2>
+            <div class="soon-items">
+                <div class="soon-item">
+                    <div class="soon-icon">🗾</div>
+                    <div class="soon-name">コースマップ</div>
+                    <div class="soon-badge">じゅんびちゅう</div>
+                </div>
+                <div class="soon-item">
+                    <div class="soon-icon">📖</div>
+                    <div class="soon-name">4コマまとめよみ</div>
+                    <div class="soon-badge">じゅんびちゅう</div>
+                </div>
+                <div class="soon-item">
+                    <div class="soon-icon">💡</div>
+                    <div class="soon-name">ウォーキングの豆ちしき</div>
+                    <div class="soon-badge">じゅんびちゅう</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- さんかほうほう -->
+    <section class="section" id="apply">
+        <div class="container">
+            <h2 class="section-title"><span>📮 さんか・お問い合わせ</span></h2>
+            <div class="apply-card">
+                <div class="apply-flex">
+                    <div class="apply-info">
+                        <div class="qr-row">
+                            <a href="https://line.me/ti/p/9CdFa6eMxw"><img src="images/qr_line.jpg" alt="LINE QRコード" class="qr-img"></a>
+                            <div>
+                                <div class="method-label">💬 LINE</div>
+                                <div class="method-value"><a href="https://line.me/ti/p/9CdFa6eMxw" style="text-decoration:none;">ニシヨリのLINE</a></div>
+                                <div class="qr-hint">QRコードから友だち追加できます</div>
+                            </div>
+                        </div>
+                        <div class="mail-row">
+                            <span class="method-label">📧 メール</span>
+                            <span class="method-value"><a href="mailto:tomonisiyo@gmail.com" style="text-decoration:none;">tomonisiyo@gmail.com</a></span>
+                        </div>
+                        <div class="apply-note">
+                            ● 参加申し込みは<strong>前の月の15日</strong>まで<br>
+                            ● 送迎などのガイド依頼は各事業所へ
+                        </div>
+                    </div>
+                    <div class="apply-mascot">
+                        <div class="speech-bubble" style="white-space:nowrap;">きがるに<br>れんらくしてね<span class="em">！</span></div>
+                        <img src="images/waraby.png" alt="ワラビーくん">
+                    </div>
+                </div>
+                <div class="apply-line-btn">
+                    <a class="btn btn-line" href="https://line.me/ti/p/9CdFa6eMxw">💬 LINEで友だち追加する</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-logo">ウォーキングサークル ワラビーズ</div>
+        <div class="footer-copy">主催：ニシヨリ ｜ © Wallabies</div>
+    </footer>
+
+    <!-- ライトボックス（クリックで画像拡大） -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="画像の拡大表示">
+        <button class="lightbox-close">とじる ✕</button>
+        <img src="" alt="拡大画像">
+    </div>
+    <script>
+        (function () {
+            var lb = document.getElementById('lightbox');
+            var lbImg = lb.querySelector('img');
+            var lastFocused = null;
+
+            function openLightbox(img) {
+                lastFocused = img;
+                /* サムネの場合は data-full の高解像度版を読み込む */
+                lbImg.src = img.dataset.full || img.src;
+                lb.classList.add('open');
+                lb.querySelector('.lightbox-close').focus();
+            }
+
+            function closeLightbox() {
+                lb.classList.remove('open');
+                lbImg.src = '';
+                if (lastFocused) lastFocused.focus();
+            }
+
+            document.querySelectorAll('.zoomable').forEach(function (img) {
+                img.setAttribute('tabindex', '0');
+                img.setAttribute('role', 'button');
+                img.addEventListener('click', function () { openLightbox(img); });
+                img.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        openLightbox(img);
+                    }
+                });
+            });
+
+            lb.addEventListener('click', closeLightbox);
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+            });
+        })();
+    </script>
+
+</body>
+</html>
