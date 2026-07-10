@@ -343,6 +343,20 @@
 
         .fun-item .fun-icon { font-size: 40px; line-height: 1.4; }
 
+        .fun-item .fun-icon img {
+            height: 56px;
+            width: auto;
+            margin: 0 auto;
+        }
+
+        .title-icon {
+            display: inline-block;  /* グローバルの img { display:block } を打ち消す */
+            height: 1.15em;
+            width: auto;
+            vertical-align: -0.18em;
+            margin-right: 2px;
+        }
+
         .fun-item .fun-name {
             font-family: 'Yusei Magic', sans-serif;
             font-size: 17px;
@@ -541,6 +555,12 @@
 
         .soon-item .soon-icon { font-size: 30px; }
 
+        .soon-item .soon-icon img {
+            height: 46px;
+            width: auto;
+            margin: 0 auto;
+        }
+
         .soon-item .soon-name {
             font-family: 'Yusei Magic', sans-serif;
             font-size: 15px;
@@ -714,10 +734,10 @@
     <header class="hero" id="top">
         <div class="hero-top">スタンプウォーキング</div>
         <h1 class="logo"><span>ワ</span><span>ラ</span><span>ビ</span><span>ー</span><span>ズ</span></h1>
-        <div class="hero-sub"><span class="dot-t">●</span> まちに でよう！ <span class="dot-y">●</span> いっしょに あるこう！ <span class="dot-g">●</span></div>
+        <div class="hero-sub"><img src="images/parts/sun.png" alt="" class="title-icon"> まちに でよう！ <img src="images/parts/town.png" alt="" class="title-icon"> いっしょに あるこう！ <img src="images/parts/footprint.png" alt="" class="title-icon"></div>
         <p class="hero-catch">障害のある方が、<span class="accent">仲間とゆっくり街を歩く</span>ウォーキングイベントです</p>
         <div class="hero-buttons">
-            <a class="btn btn-about" href="#about">🚶 ワラビーズって なに？</a>
+            <a class="btn btn-about" href="#about"><img src="images/parts/hiikingshoe.png" alt="" class="title-icon"> ワラビーズって なに？</a>
             <a class="btn btn-line" href="#apply">💬 さんか・お問い合わせ</a>
         </div>
         <div class="hero-visual">
@@ -733,7 +753,7 @@
     <!-- ワラビーズってなに？ -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title"><span>🚶 ワラビーズって なに？</span></h2>
+            <h2 class="section-title"><span><img src="images/parts/CHwa_walk.png" alt="歩くワラビーくん" class="title-icon" style="height:1.6em; vertical-align:-0.45em;"> ワラビーズって なに？</span></h2>
             <p class="about-catch">障害のある方が、<span class="accent">仲間とゆっくり街を歩く</span><br>ウォーキングイベントです。</p>
             <p class="about-text">
                 神戸・阪神間を中心に、<strong>月1回</strong>のウォーキングイベントを開催しています。
@@ -770,20 +790,20 @@
     <!-- おたのしみポイント -->
     <section class="section section-fun" id="fun">
         <div class="container">
-            <h2 class="section-title"><span>⭐ おたのしみポイント</span></h2>
+            <h2 class="section-title"><span><img src="images/parts/star.png" alt="" class="title-icon"> おたのしみポイント</span></h2>
             <div class="fun-items">
                 <div class="fun-item">
-                    <div class="fun-icon">🗺️</div>
+                    <div class="fun-icon"><img src="images/parts/map.png" alt="地図のイラスト"></div>
                     <div class="fun-name">スタンプカード</div>
                     <div class="fun-desc">コースのポイントでスタンプ！<br><strong>10枚たまると嬉しい特典！</strong></div>
                 </div>
                 <div class="fun-item">
-                    <div class="fun-icon">🍩</div>
+                    <div class="fun-icon"><img src="images/parts/donut.png" alt="ドーナツのイラスト"></div>
                     <div class="fun-name">おやつタイム</div>
                     <div class="fun-desc">休憩のおいしいおやつ！<br>毎回ちがうおやつにワクワク</div>
                 </div>
                 <div class="fun-item">
-                    <div class="fun-icon">🏛️</div>
+                    <div class="fun-icon"><img src="images/parts/museum.png" alt="博物館のイラスト"></div>
                     <div class="fun-name">いろんなスポット</div>
                     <div class="fun-desc">街に公園に海に<br>博物館や動物園を見学することも</div>
                 </div>
@@ -794,7 +814,7 @@
     <!-- スタンプカード -->
     <section class="section" id="stampcard">
         <div class="container">
-            <h2 class="section-title"><span>🎴 スタンプカード</span></h2>
+            <h2 class="section-title"><span><img src="images/parts/stamp.png" alt="" class="title-icon"> スタンプカード</span></h2>
             <p class="stamp-lead">
                 チェックポイントでスタンプを押しながらゴールをめざす、ワラビーズ名物のカード。
                 <strong>毎回コースにあわせた手描きデザイン</strong>なので、集める楽しみもあります！
@@ -812,7 +832,7 @@
     <!-- あるいたところ -->
     <section class="section" id="courses">
         <div class="container">
-            <h2 class="section-title"><span>👟 こんなところを歩きました</span></h2>
+            <h2 class="section-title"><span><img src="images/parts/footprint.png" alt="" class="title-icon"> こんなところを歩きました</span></h2>
             <div class="course-card">
                 <ul class="course-list">
                     <li><span>⚓️</span><span><span class="course-name">神戸旧居留地</span>〜メリケンパーク</span></li>
@@ -831,7 +851,7 @@
     <!-- 会報 -->
     <section class="section section-newsletter" id="newsletter">
         <div class="container">
-            <h2 class="section-title"><span>📰 会報『ワラビーズのワ！』</span></h2>
+            <h2 class="section-title"><span><img src="images/parts/newspaper.png" alt="" class="title-icon"> 会報『ワラビーズのワ！』</span></h2>
             <p class="newsletter-lead">
                 毎月発行している会報です。今月のコース案内、コアラさんの「げんばレポート」、
                 4コマ漫画「ワラビーくん」などをお届けしています。
@@ -856,20 +876,20 @@
     <!-- じゅんびちゅう -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title"><span>🔧 これからふえるコーナー</span></h2>
+            <h2 class="section-title"><span><img src="images/parts/sprout.png" alt="" class="title-icon"> これからふえるコーナー</span></h2>
             <div class="soon-items">
                 <div class="soon-item">
-                    <div class="soon-icon">🗾</div>
+                    <div class="soon-icon"><img src="images/parts/map.png" alt="地図のイラスト"></div>
                     <div class="soon-name">コースマップ</div>
                     <div class="soon-badge">じゅんびちゅう</div>
                 </div>
                 <div class="soon-item">
-                    <div class="soon-icon">📖</div>
+                    <div class="soon-icon"><img src="images/parts/book.png" alt="絵本のイラスト"></div>
                     <div class="soon-name">4コマまとめよみ</div>
                     <div class="soon-badge">じゅんびちゅう</div>
                 </div>
                 <div class="soon-item">
-                    <div class="soon-icon">💡</div>
+                    <div class="soon-icon"><img src="images/parts/bulb.png" alt="電球のイラスト"></div>
                     <div class="soon-name">ウォーキングの豆ちしき</div>
                     <div class="soon-badge">じゅんびちゅう</div>
                 </div>
@@ -880,7 +900,7 @@
     <!-- さんかほうほう -->
     <section class="section" id="apply">
         <div class="container">
-            <h2 class="section-title"><span>📮 さんか・お問い合わせ</span></h2>
+            <h2 class="section-title"><span><img src="images/parts/post.png" alt="" class="title-icon"> さんか・お問い合わせ</span></h2>
             <div class="apply-card">
                 <div class="apply-flex">
                     <div class="apply-info">
