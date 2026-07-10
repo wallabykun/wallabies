@@ -8,8 +8,8 @@
     <meta property="og:title" content="ワラビーズ｜スタンプウォーキング">
     <meta property="og:description" content="障害のある方が、仲間とゆっくり街を歩くウォーキングイベントです。毎月第4土曜日、神戸・阪神間・大阪で開催！">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://wallabykun.github.io/">
-    <meta property="og:image" content="https://wallabykun.github.io/images/chirashi01.jpg">
+    <meta property="og:url" content="https://wallabykun.github.io/wallabies/">
+    <meta property="og:image" content="https://wallabykun.github.io/wallabies/images/chirashi01.jpg">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦘</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -920,7 +920,7 @@
     </footer>
 
     <!-- ライトボックス（クリックで画像拡大） -->
-    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="画像の拡大表示">
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="画像の拡大表示" aria-hidden="true">
         <button class="lightbox-close">とじる ✕</button>
         <img src="" alt="拡大画像">
     </div>
@@ -935,11 +935,13 @@
                 /* サムネの場合は data-full の高解像度版を読み込む */
                 lbImg.src = img.dataset.full || img.src;
                 lb.classList.add('open');
+                lb.setAttribute('aria-hidden', 'false');
                 lb.querySelector('.lightbox-close').focus();
             }
 
             function closeLightbox() {
                 lb.classList.remove('open');
+                lb.setAttribute('aria-hidden', 'true');
                 lbImg.src = '';
                 if (lastFocused) lastFocused.focus();
             }
