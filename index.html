@@ -164,6 +164,28 @@
         .hero-sub .dot-y { color: var(--orange); }
         .hero-sub .dot-g { color: var(--green); }
 
+        .hero-walkers {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .hero-walkers img {
+            width: auto;
+            animation: walk-bob 1.6s ease-in-out infinite;
+        }
+
+        .hero-walkers .w-ka { height: 41px; animation-delay: 0s; }
+        .hero-walkers .w-ko { height: 49px; animation-delay: .25s; }
+        .hero-walkers .w-wa { height: 60px; animation-delay: .5s; }
+
+        @keyframes walk-bob {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
+        }
+
         .hero-catch {
             font-size: clamp(14px, 2.8vw, 18px);
             font-weight: 900;
@@ -735,6 +757,11 @@
         <div class="hero-top">スタンプウォーキング</div>
         <h1 class="logo"><span>ワ</span><span>ラ</span><span>ビ</span><span>ー</span><span>ズ</span></h1>
         <div class="hero-sub"><img src="images/parts/sun.png" alt="" class="title-icon"> まちに でよう！ <img src="images/parts/town.png" alt="" class="title-icon"> いっしょに あるこう！ <img src="images/parts/footprint.png" alt="" class="title-icon"></div>
+        <div class="hero-walkers">
+            <img src="images/parts/CHka_walk.png" alt="歩くカエルくん" class="w-ka">
+            <img src="images/parts/CHko_walk.png" alt="歩くコアラさん" class="w-ko">
+            <img src="images/parts/CHwa_walk.png" alt="歩くワラビーくん" class="w-wa">
+        </div>
         <p class="hero-catch">障害のある方が、<span class="accent">仲間とゆっくり街を歩く</span>ウォーキングイベントです</p>
         <div class="hero-buttons">
             <a class="btn btn-about" href="#about"><img src="images/parts/hiikingshoe.png" alt="" class="title-icon"> ワラビーズって なに？</a>
