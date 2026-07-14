@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ワラビーズ｜スタンプウォーキング</title>
+    <title>ワラビーズ｜スタンプウォーキング｜障害のある方のウォーキングイベント（神戸・阪神間・大阪）</title>
     <meta name="description" content="ワラビーズは、障害のある方が仲間とゆっくり街を歩くウォーキングイベントです。神戸・阪神間・大阪で毎月開催。スタンプカードとおやつタイムがお楽しみ！">
     <meta property="og:title" content="ワラビーズ｜スタンプウォーキング">
     <meta property="og:description" content="障害のある方が、仲間とゆっくり街を歩くウォーキングイベントです。毎月第4土曜日、神戸・阪神間・大阪で開催！">
@@ -108,7 +108,7 @@
         .hero {
             background: #FFFFFF;
             text-align: center;
-            padding: 34px 16px 0;
+            padding: 46px 16px 0;
         }
 
         .hero-top {
@@ -164,37 +164,25 @@
         .hero-sub .dot-y { color: var(--orange); }
         .hero-sub .dot-g { color: var(--green); }
 
-        .hero-walkers {
-            display: flex;
-            justify-content: center;
+        .hero-sub-walkers {
+            display: inline-flex;
             align-items: flex-end;
-            gap: 14px;
-            margin-top: 12px;
+            gap: 6px;
+            margin-left: 14px;
+            vertical-align: -0.35em;
         }
 
-        .hero-walkers img {
-            width: auto;
-            animation: walk-bob 1.6s ease-in-out infinite;
-        }
+        .hero-sub-walkers img { width: auto; }
+        .hero-sub-walkers .w-ka { height: 1.35em; }
+        .hero-sub-walkers .w-ko { height: 1.6em; }
+        .hero-sub-walkers .w-wa { height: 1.95em; }
 
-        .hero-walkers .w-ka { height: 41px; animation-delay: 0s; }
-        .hero-walkers .w-ko { height: 49px; animation-delay: .25s; }
-        .hero-walkers .w-wa { height: 60px; animation-delay: .5s; }
-
-        @keyframes walk-bob {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-
-        .hero-catch {
-            font-size: clamp(14px, 2.8vw, 18px);
-            font-weight: 900;
-            margin-top: 10px;
-        }
-
-        .hero-catch .accent {
-            color: var(--teal-dark);
-            background: linear-gradient(transparent 64%, var(--marker) 64%, var(--marker) 94%, transparent 94%);
+        @media (max-width: 560px) {
+            .hero-sub-walkers {
+                display: flex;
+                justify-content: center;
+                margin: 10px 0 0;
+            }
         }
 
         .hero-buttons {
@@ -202,7 +190,7 @@
             justify-content: center;
             gap: 14px;
             flex-wrap: wrap;
-            margin: 18px 0 26px;
+            margin: 26px 0 30px;
         }
 
         .btn {
@@ -721,6 +709,23 @@
             text-align: center;
             padding: 22px 16px 26px;
             margin-top: 40px;
+            position: relative;
+        }
+
+        /* フッターのふちを歩くカエルくん（ひっそり） */
+        .footer-frog {
+            position: absolute;
+            right: 26px;
+            bottom: 100%;
+            height: 30px;
+            width: auto;
+            animation: frog-stroll 7s ease-in-out infinite;
+        }
+
+        @keyframes frog-stroll {
+            0%, 12%, 100% { transform: translate(0, 0); }
+            3%, 9% { transform: translate(0, -2px); }
+            6% { transform: translate(0, 0); }
         }
 
         .footer .footer-logo {
@@ -756,13 +761,7 @@
     <header class="hero" id="top">
         <div class="hero-top">スタンプウォーキング</div>
         <h1 class="logo"><span>ワ</span><span>ラ</span><span>ビ</span><span>ー</span><span>ズ</span></h1>
-        <div class="hero-sub"><img src="images/parts/sun.png" alt="" class="title-icon"> まちに でよう！ <img src="images/parts/town.png" alt="" class="title-icon"> いっしょに あるこう！ <img src="images/parts/footprint.png" alt="" class="title-icon"></div>
-        <div class="hero-walkers">
-            <img src="images/parts/CHka_walk.png" alt="歩くカエルくん" class="w-ka">
-            <img src="images/parts/CHko_walk.png" alt="歩くコアラさん" class="w-ko">
-            <img src="images/parts/CHwa_walk.png" alt="歩くワラビーくん" class="w-wa">
-        </div>
-        <p class="hero-catch">障害のある方が、<span class="accent">仲間とゆっくり街を歩く</span>ウォーキングイベントです</p>
+        <div class="hero-sub">まちに でよう！ いっしょに あるこう！<span class="hero-sub-walkers"><img src="images/parts/CHka_walk.png" alt="カエルくん" class="w-ka"><img src="images/parts/CHko_walk.png" alt="コアラさん" class="w-ko"><img src="images/parts/CHwa_walk.png" alt="ワラビーくん" class="w-wa"></span></div>
         <div class="hero-buttons">
             <a class="btn btn-about" href="#about"><img src="images/parts/hiikingshoe.png" alt="" class="title-icon"> ワラビーズって なに？</a>
             <a class="btn btn-line" href="#apply">💬 さんか・お問い合わせ</a>
@@ -820,7 +819,7 @@
             <h2 class="section-title"><span><img src="images/parts/star.png" alt="" class="title-icon"> おたのしみポイント</span></h2>
             <div class="fun-items">
                 <div class="fun-item">
-                    <div class="fun-icon"><img src="images/parts/map.png" alt="地図のイラスト"></div>
+                    <div class="fun-icon"><img src="images/parts/card.png" alt="スタンプカードのイラスト"></div>
                     <div class="fun-name">スタンプカード</div>
                     <div class="fun-desc">コースのポイントでスタンプ！<br><strong>10枚たまると嬉しい特典！</strong></div>
                 </div>
@@ -964,6 +963,7 @@
 
     <!-- フッター -->
     <footer class="footer">
+        <img src="images/parts/CHka_walk.png" alt="" class="footer-frog">
         <div class="footer-logo">ウォーキングサークル ワラビーズ</div>
         <div class="footer-copy">主催：ニシヨリ ｜ © Wallabies</div>
     </footer>
